@@ -1,0 +1,5 @@
+SUM([profit]) / SUM([total_amount])
+SUM([total_amount]) / COUNTD([sale_id])
+(SUM([total_amount]) - LOOKUP(SUM([total_amount]), -12)) / ABS(LOOKUP(SUM([total_amount]), -12))
+{ FIXED [customer_id] : SUM([total_amount]) }
+RANK_UNIQUE(SUM([total_amount]), 'desc')
