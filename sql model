@@ -1,0 +1,38 @@
+-- simplified DDL (MySQL)
+CREATE TABLE customers (
+  customer_id INT PRIMARY KEY,
+  customer_name VARCHAR(150),
+  city VARCHAR(100),
+  state VARCHAR(100),
+  join_date DATE
+);
+
+CREATE TABLE products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(150),
+  category VARCHAR(100),
+  cost_price DECIMAL(10,2),
+  list_price DECIMAL(10,2)
+);
+
+CREATE TABLE stores (
+  store_id INT PRIMARY KEY,
+  store_name VARCHAR(150),
+  region VARCHAR(100)
+);
+
+CREATE TABLE sales (
+  sale_id INT PRIMARY KEY AUTO_INCREMENT,
+  order_date DATE,
+  customer_id INT,
+  product_id INT,
+  store_id INT,
+  quantity INT,
+  sale_price DECIMAL(10,2),   -- price customer paid per unit
+  discount DECIMAL(10,2),
+  total_amount DECIMAL(12,2), -- quantity*sale_price - discount
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+  FOREIGN KEY (product_id) REFERENCES products(product_id),
+  FOREIGN KEY (store_id) REFERENCES stores(store_id)
+);
